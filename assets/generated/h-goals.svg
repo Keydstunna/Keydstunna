@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 66" width="900" height="66" role="img">
+<defs>
+<linearGradient id="gBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1633"/><stop offset="1" stop-color="#050a17"/></linearGradient>
+<linearGradient id="gBd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="0.55" stop-color="#38bdf8"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
+<linearGradient id="gTx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#67e8f9"/></linearGradient>
+<filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1e3a8a" stroke-opacity="0.18" stroke-width="1"/></pattern>
+<linearGradient id="lineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b82f6" stop-opacity="0"/><stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.7"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
+<linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+
+<circle cx="319.2" cy="30" r="19" fill="#0b1a3d" stroke="url(#gBd)" stroke-width="2"/>
+<circle cx="319.2" cy="30" r="19" fill="none" stroke="#38bdf8" stroke-width="1.5"><animate attributeName="r" values="19;31" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite"/></circle>
+<g transform="translate(308.2 19.0) scale(0.9167)" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM12 8a4 4 0 100 8 4 4 0 000-8zM12 12h.01"/></g>
+<text x="355.2" y="40" font-family="'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif" font-size="28" font-weight="800" font-style="italic" fill="#e0f2fe" textLength="247.5" lengthAdjust="spacingAndGlyphs">Hobbies &amp; Goals</text>
+<rect x="30" y="58" width="840" height="2" rx="1" fill="url(#lineG)"/>
+<rect x="-180" y="57" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="900" dur="4.6s" repeatCount="indefinite"/></rect>
+</svg>
