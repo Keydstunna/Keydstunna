@@ -6,12 +6,18 @@
 <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1e3a8a" stroke-opacity="0.18" stroke-width="1"/></pattern>
 <linearGradient id="lineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b82f6" stop-opacity="0"/><stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.7"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
-<linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="hp"><rect x="3" y="3" width="894" height="60" rx="18"/></clipPath></defs>
 
+<rect x="3" y="3" width="894" height="60" rx="18" fill="url(#gBg)"/>
+<rect x="3" y="3" width="894" height="60" rx="18" fill="url(#grid)"/>
+<g clip-path="url(#hp)">
 <circle cx="360.5" cy="30" r="19" fill="#0b1a3d" stroke="url(#gBd)" stroke-width="2"/>
 <circle cx="360.5" cy="30" r="19" fill="none" stroke="#38bdf8" stroke-width="1.5"><animate attributeName="r" values="19;31" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite"/></circle>
 <g transform="translate(349.5 19.0) scale(0.9167)" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20V13M21 20H3"/></g>
 <text x="396.5" y="40" font-family="'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif" font-size="28" font-weight="800" font-style="italic" fill="#e0f2fe" textLength="165.0" lengthAdjust="spacingAndGlyphs">Statistics</text>
-<rect x="30" y="58" width="840" height="2" rx="1" fill="url(#lineG)"/>
-<rect x="-180" y="57" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="900" dur="4.6s" repeatCount="indefinite"/></rect>
+<rect x="40" y="54" width="820" height="2" rx="1" fill="url(#lineG)"/>
+<rect x="-180" y="53" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="900" dur="4.6s" repeatCount="indefinite"/></rect>
+</g>
+<rect x="3" y="3" width="894" height="60" rx="18" fill="none" stroke="url(#gBd)" stroke-width="2.2"><animate attributeName="stroke-opacity" values="1;0.5;1" dur="5s" repeatCount="indefinite"/></rect>
 </svg>
