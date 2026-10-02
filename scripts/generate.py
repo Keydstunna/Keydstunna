@@ -48,6 +48,13 @@ def load_config():
         "extra_tech": ["MySQL", "Git", "GitHub"],
         "hide_tech": [],
         "max_tech": 12,
+        "about": [
+            "Hello! I'm **Keydstunna**, a third-year **BS Information Technology** student. I enjoy learning new technologies, building web projects, and solving problems through code.",
+            "Right now I'm sharpening my skills in **PHP, JavaScript, HTML, and CSS**, and working toward becoming a well-rounded developer.",
+        ],
+        "goals": ["Third-year BSIT student, always building and learning."],
+        "quote": "you can never be too happy in this life",
+        "tagline": "Building | Learning | Shipping",
     }
     p = ROOT / "config.json"
     if p.exists():
@@ -112,31 +119,30 @@ def smooth_path(pts):
     return d
 
 
-# --------------------------------------------------------------------------- headings
-def heading_svg(title, icon_name):
-    w, h = 900, 66
+# --------------------------------------------------------------------------- section frame (heading + content share ONE background)
+HEADER_H = 72
+
+
+def section_svg(w, inner_h, title, icon_name, inner, extra="", style=""):
     tw = len(title) * 16.5
     total = 44 + 14 + tw
-    x0 = 450 - total / 2
-    cx, cy = x0 + 22, 30
-    extra = f'''
+    x0 = w / 2 - total / 2
+    cx, cy = x0 + 22, 36
+    defs = f'''
 <linearGradient id="lineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C['a1']}" stop-opacity="0"/><stop offset="0.5" stop-color="{C['a2']}" stop-opacity="0.7"/><stop offset="1" stop-color="{C['a1']}" stop-opacity="0"/></linearGradient>
-<linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'''
-    extra += f'''
-<clipPath id="hp"><rect x="3" y="3" width="{w - 6}" height="{h - 6}" rx="18"/></clipPath>'''
-    body = f'''
-<rect x="3" y="3" width="{w - 6}" height="{h - 6}" rx="18" fill="url(#gBg)"/>
-<rect x="3" y="3" width="{w - 6}" height="{h - 6}" rx="18" fill="url(#grid)"/>
-<g clip-path="url(#hp)">
+<linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="hp"><rect x="3" y="3" width="{w - 6}" height="{HEADER_H - 6}" rx="18"/></clipPath>'''
+    header = f'''<g clip-path="url(#hp)">
 <circle cx="{cx:.1f}" cy="{cy}" r="19" fill="#0b1a3d" stroke="url(#gBd)" stroke-width="2"/>
 <circle cx="{cx:.1f}" cy="{cy}" r="19" fill="none" stroke="{C['a2']}" stroke-width="1.5"><animate attributeName="r" values="19;31" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite"/></circle>
 {icon(icon_name, cx - 11, cy - 11, 22, C['a2'])}
 <text x="{x0 + 58:.1f}" y="{cy + 10}" font-family="{FONT_SANS}" font-size="28" font-weight="800" font-style="italic" fill="{C['hi']}" textLength="{tw:.1f}" lengthAdjust="spacingAndGlyphs">{esc(title)}</text>
-<rect x="40" y="54" width="820" height="2" rx="1" fill="url(#lineG)"/>
-<rect x="-180" y="53" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="900" dur="4.6s" repeatCount="indefinite"/></rect>
-</g>
-<rect x="3" y="3" width="{w - 6}" height="{h - 6}" rx="18" fill="none" stroke="url(#gBd)" stroke-width="2.2"><animate attributeName="stroke-opacity" values="1;0.5;1" dur="5s" repeatCount="indefinite"/></rect>'''
-    return svg_doc(w, h, body, extra)
+<rect x="40" y="{HEADER_H - 10}" width="{w - 80}" height="2" rx="1" fill="url(#lineG)"/>
+<rect x="-180" y="{HEADER_H - 11}" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="{w}" dur="4.6s" repeatCount="indefinite"/></rect>
+</g>'''
+    H = HEADER_H + inner_h
+    body = panel(w, H) + header + f'<g transform="translate(0 {HEADER_H})">{inner}</g>'
+    return svg_doc(w, H, body, defs + extra, style)
 
 
 # --------------------------------------------------------------------------- banner
@@ -282,29 +288,31 @@ def http_get(url, timeout=12):
         return r.read()
 
 
+ICON_COL = "#7dd3fc"
+
+
 def get_icon(key, uid):
-    """Real brand icon from devicon (multicolor) or simple-icons; None on any failure."""
+    """Monochrome brand glyph (simple-icons, then devicon 'plain'); None on failure."""
     meta = TECH.get(key)
     if not meta:
         return None
-    _label, dev, simple, color = meta
-    for variant in ("original", "plain"):
+    _label, dev, simple, _color = meta
+    for ver in ("latest", "11.14.0"):
         try:
-            txt = http_get(f"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{dev}/{dev}-{variant}.svg").decode("utf-8", "ignore")
-            m = re.search(r'<svg[^>]*viewBox="([^"]+)"[^>]*>(.*)</svg>', txt, re.S)
-            if m and "<style" not in m.group(2) and "<image" not in m.group(2):
-                vb, inner = m.group(1), m.group(2)
-                inner = re.sub(r'(?<![\w-])id="([^"]+)"', lambda mm: f'id="{uid}{mm.group(1)}"', inner)
-                inner = re.sub(r"url\(#([^)]+)\)", lambda mm: f"url(#{uid}{mm.group(1)})", inner)
-                inner = re.sub(r'(xlink:)?href="#([^"]+)"', lambda mm: f'{mm.group(1) or ""}href="#{uid}{mm.group(2)}"', inner)
-                return ("dev", vb, inner)
+            txt = http_get(f"https://cdn.jsdelivr.net/npm/simple-icons@{ver}/icons/{simple}.svg").decode("utf-8", "ignore")
+            m = re.search(r'<path d="([^"]+)"', txt)
+            if m:
+                return ("simple", "0 0 24 24", m.group(1))
         except Exception:
             pass
     try:
-        txt = http_get(f"https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{simple}.svg").decode("utf-8", "ignore")
-        m = re.search(r'<path d="([^"]+)"', txt)
-        if m:
-            return ("simple", "0 0 24 24", m.group(1), color)
+        txt = http_get(f"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{dev}/{dev}-plain.svg").decode("utf-8", "ignore")
+        m = re.search(r'<svg[^>]*viewBox="([^"]+)"[^>]*>(.*)</svg>', txt, re.S)
+        if m and "<image" not in m.group(2):
+            inner = re.sub(r'\sfill="(?!none)[^"]*"', "", m.group(2))
+            inner = re.sub(r'\sstyle="[^"]*"', "", inner)
+            inner = re.sub(r"<style.*?</style>", "", inner, flags=re.S)
+            return ("dev", m.group(1), inner)
     except Exception:
         pass
     return None
@@ -339,14 +347,14 @@ def build_tech_items(cfg, langs, fetch_icons=True):
 
 def tech_svg(items):
     w = 900
-    pill_h, gap_x, gap_y = 46, 12, 14
+    pill_h, gap_x, gap_y, pad = 46, 12, 14, 26
     for it in items:
         it["tw"] = len(it["label"]) * 8.8
-        it["pw"] = 10 + 30 + 10 + it["tw"] + 18
+        it["pw"] = 16 + 24 + 12 + it["tw"] + 20
     rows, cur, cur_w = [], [], 0
     for it in items:
         add_w = it["pw"] + (gap_x if cur else 0)
-        if cur and cur_w + add_w > 840:
+        if cur and cur_w + add_w > 820:
             rows.append(cur)
             cur, cur_w = [], 0
             add_w = it["pw"]
@@ -354,36 +362,35 @@ def tech_svg(items):
         cur_w += add_w
     if cur:
         rows.append(cur)
-    h = 30 + len(rows) * pill_h + max(0, len(rows) - 1) * gap_y + 30
+    inner_h = pad + len(rows) * pill_h + max(0, len(rows) - 1) * gap_y + pad
     body, idx = "", 0
     for r, row in enumerate(rows):
         rw = sum(i["pw"] for i in row) + gap_x * (len(row) - 1)
         x = 450 - rw / 2
-        y = 30 + r * (pill_h + gap_y)
+        y = pad + r * (pill_h + gap_y)
         for it in row:
             ic = it["icon"]
             if ic and ic[0] == "dev":
-                glyph = f'<svg x="11" y="11" width="24" height="24" viewBox="{ic[1]}">{ic[2]}</svg>'
+                glyph = f'<svg x="16" y="11" width="24" height="24" viewBox="{ic[1]}"><g fill="{ICON_COL}">{ic[2]}</g></svg>'
             elif ic and ic[0] == "simple":
-                glyph = f'<svg x="11" y="11" width="24" height="24" viewBox="0 0 24 24"><path d="{ic[2]}" fill="#{ic[3]}"/></svg>'
+                glyph = f'<svg x="16" y="11" width="24" height="24" viewBox="0 0 24 24"><path d="{ic[2]}" fill="{ICON_COL}"/></svg>'
             else:
-                glyph = (f'<text x="23" y="29" text-anchor="middle" font-family="{FONT_MONO}" font-size="15" '
-                         f'font-weight="800" fill="#1d4ed8">{esc(it["label"][:2])}</text>')
+                glyph = (f'<text x="28" y="30" text-anchor="middle" font-family="{FONT_MONO}" font-size="15" '
+                         f'font-weight="800" fill="{ICON_COL}">{esc(it["label"][:2])}</text>')
             b = idx * 0.09
             body += f'''
 <g opacity="0" transform="translate({x:.1f} {y + 14})">
 <animateTransform attributeName="transform" type="translate" from="{x:.1f} {y + 14}" to="{x:.1f} {y}" begin="{b:.2f}s" dur="0.6s" fill="freeze"/>
 <animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.6s" fill="freeze"/>
 <g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="{3.2 + (idx % 4) * 0.5:.1f}s" begin="{0.8 + b:.2f}s" repeatCount="indefinite"/>
-<rect width="{it['pw']:.1f}" height="{pill_h}" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
-<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<rect width="{it['pw']:.1f}" height="{pill_h}" rx="13" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
 {glyph}
-<text x="48" y="29" font-family="{FONT_MONO}" font-size="13.5" font-weight="700" fill="{C['hi']}" textLength="{it['tw']:.1f}" lengthAdjust="spacing">{esc(it['label'])}</text>
-<rect width="{it['pw']:.1f}" height="{pill_h}" rx="12" fill="none" stroke="{C['a2']}" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="{4 + (idx % 3)}s" begin="{1.5 + b:.2f}s" repeatCount="indefinite"/></rect>
+<text x="52" y="29" font-family="{FONT_MONO}" font-size="13.5" font-weight="700" fill="{C['hi']}" textLength="{it['tw']:.1f}" lengthAdjust="spacing">{esc(it['label'])}</text>
+<rect width="{it['pw']:.1f}" height="{pill_h}" rx="13" fill="none" stroke="{C['a2']}" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="{4 + (idx % 3)}s" begin="{1.5 + b:.2f}s" repeatCount="indefinite"/></rect>
 </g></g>'''
             x += it["pw"] + gap_x
             idx += 1
-    return svg_doc(w, h, body)
+    return section_svg(w, inner_h, "Technologies", "code", body)
 
 
 # --------------------------------------------------------------------------- stats
@@ -447,7 +454,7 @@ def stats_svg(d):
         ("bolt", "LONGEST STREAK", val(st["longest"], " d"), "best run this year"),
         ("star", "BUSIEST DAY", val(best["count"]), best_cap or "-"),
     ]
-    body = panel(W, H)
+    body = ""
     for i, (ic, label, value, cap) in enumerate(cards):
         x = 28 + i * 214
         b = i * 0.15
@@ -552,7 +559,7 @@ def stats_svg(d):
     extra = f'''
 <linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{C['a2']}" stop-opacity="0.42"/><stop offset="1" stop-color="{C['a1']}" stop-opacity="0"/></linearGradient>
 <linearGradient id="lineStroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{C['a1']}"/><stop offset="0.6" stop-color="{C['a2']}"/><stop offset="1" stop-color="#a5b4fc"/></linearGradient>'''
-    return svg_doc(W, H, body, extra)
+    return section_svg(W, H, "Statistics", "chart", body, extra)
 
 
 # --------------------------------------------------------------------------- scan (visual map + system info)
@@ -628,7 +635,7 @@ def scan_svg(d):
     extra = f'''
 <clipPath id="disc"><circle cx="{cxm}" cy="{cym}" r="{n * cell / 2}"/></clipPath>
 <linearGradient id="scanG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{C['a2']}" stop-opacity="0"/><stop offset="0.85" stop-color="{C['a2']}" stop-opacity="0.55"/><stop offset="1" stop-color="#e0f2fe" stop-opacity="0.95"/></linearGradient>'''
-    body = panel(w, h) + titlebar(w, f"{d['login'].lower()}@github ~ $ ./profile-scan --live")
+    body = titlebar(w, f"{d['login'].lower()}@github ~ $ ./profile-scan --live")
     body += f'<rect x="28" y="56" width="310" height="268" rx="12" fill="#050e24" stroke="#1e40af" stroke-width="1.5"/>'
     body += f'<text x="44" y="78" font-family="{FONT_MONO}" font-size="11" letter-spacing="2" fill="{C["a2"]}">VISUAL.MAP</text>'
     body += f'<g clip-path="url(#disc)">{dots}<rect x="{cxm - 120}" y="{cym - n * cell / 2 - 24}" width="240" height="24" fill="url(#scanG)"><animate attributeName="y" values="{cym - n * cell / 2 - 24};{cym + n * cell / 2}" dur="3.4s" repeatCount="indefinite"/></rect></g>'
@@ -649,7 +656,145 @@ def scan_svg(d):
                  f'<line x1="374" y1="{y + 8}" x2="856" y2="{y + 8}" stroke="#1e3a8a" stroke-opacity="0.45"/></g>')
         y += 22
     body += (f'<rect x="374" y="{y - 8}" width="9" height="15" fill="{C["a2"]}"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
-    return svg_doc(w, h, body, extra, style)
+    return section_svg(w, h, "Profile Scan", "scan", body, extra, style)
+
+
+# --------------------------------------------------------------------------- about / goals
+def units_of(text):
+    units, cur, bold = [], None, False
+    for part in re.split(r"(\*\*)", text):
+        if part == "**":
+            bold = not bold
+            continue
+        for m in re.finditer(r"\s+|\S+", part):
+            t = m.group(0)
+            if t.isspace():
+                cur = None
+            else:
+                if cur is None:
+                    cur = []
+                    units.append(cur)
+                cur.append((t, bold))
+    return units
+
+
+def wrap_units(units, max_chars):
+    lines, cur, n = [], [], 0
+    for u in units:
+        ln = sum(len(t) for t, _b in u)
+        add = ln + (1 if cur else 0)
+        if cur and n + add > max_chars:
+            lines.append(cur)
+            cur, n, add = [], 0, ln
+        cur.append(u)
+        n += add
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+BLOCK_STYLE = {
+    "p": dict(size=17, lh=28, color=C["text"], chars=54, italic=False, mono=False),
+    "quote": dict(size=18, lh=29, color=C["a2"], chars=48, italic=True, mono=False),
+    "tag": dict(size=14, lh=24, color=C["hi"], chars=60, italic=False, mono=True),
+}
+
+
+def layout_blocks(blocks):
+    items, y = [], 0
+    for kind, text in blocks:
+        st = BLOCK_STYLE[kind]
+        if kind == "quote":
+            text = '"' + text + '"'
+        for line in wrap_units(units_of(text), st["chars"]):
+            items.append((st, line, y))
+            y += st["lh"]
+        y += 14
+    return items, max(0, y - 14)
+
+
+def render_line(st, line, x, y, delay):
+    spans = ""
+    for ui, unit in enumerate(line):
+        for pi, (t, b) in enumerate(unit):
+            pre = " " if (ui > 0 and pi == 0) else ""
+            if b:
+                spans += f'<tspan font-weight="800" fill="{C["hi"]}">{pre}{esc(t)}</tspan>'
+            else:
+                spans += f"<tspan>{pre}{esc(t)}</tspan>"
+    fam = FONT_MONO if st["mono"] else FONT_SANS
+    extra = ' font-style="italic"' if st["italic"] else ""
+    extra += ' font-weight="700" letter-spacing="2"' if st["mono"] else ""
+    return (f'<text xml:space="preserve" x="{x}" y="{y:.1f}" text-anchor="middle" font-family="{fam}" font-size="{st["size"]}" '
+            f'fill="{st["color"]}" opacity="0"{extra}>{spans}'
+            f'<animate attributeName="opacity" from="0" to="1" begin="{delay:.2f}s" dur="0.6s" fill="freeze"/></text>')
+
+
+def char_defs():
+    return ('<radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#3b82f6" stop-opacity="0.45"/>'
+            '<stop offset="0.6" stop-color="#1d4ed8" stop-opacity="0.18"/><stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/></radialGradient>'
+            '<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>')
+
+
+def sparkle(x, y, sz, dur, begin):
+    return (f'<path d="M{x},{y - sz} Q{x},{y} {x + sz},{y} Q{x},{y} {x},{y + sz} Q{x},{y} {x - sz},{y} Q{x},{y} {x},{y - sz}Z" fill="#bae6fd">'
+            f'<animate attributeName="opacity" values="0;1;0" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/></path>')
+
+
+def char_group(path, cx, cy, maxdim, sway=False):
+    try:
+        from PIL import Image
+        im = Image.open(path).convert("RGBA")
+        im = im.crop(im.getbbox())
+        im.thumbnail((maxdim, maxdim), Image.LANCZOS)
+        buf = io.BytesIO()
+        im.save(buf, "PNG", optimize=True)
+        data = base64.b64encode(buf.getvalue()).decode()
+    except Exception as e:
+        print("character image skipped:", e, file=sys.stderr)
+        return ""
+    iw, ih = im.size
+    x, y = cx - iw / 2, cy - ih / 2
+    swy = ""
+    if sway:
+        swy = (f'<animateTransform attributeName="transform" type="rotate" values="-3 {cx} {y + ih};3 {cx} {y + ih};-3 {cx} {y + ih}" '
+               f'dur="5s" repeatCount="indefinite"/>')
+    sp = "".join(sparkle(cx + dx, cy + dy, sz, du, be) for dx, dy, sz, du, be in
+                 [(-105, -95, 9, 2.6, 0), (110, -110, 11, 3.1, 0.8), (100, 85, 8, 2.4, 1.5), (-100, 80, 7, 2.9, 0.4), (0, -135, 8, 3.4, 2)])
+    return f'''<g clip-path="url(#ic)">
+<ellipse cx="{cx}" cy="{cy}" rx="160" ry="160" fill="url(#halo)"><animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite"/></ellipse>
+<circle cx="{cx}" cy="{cy}" r="140" fill="none" stroke="{C['a2']}" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="4 10"><animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="30s" repeatCount="indefinite"/></circle>
+<ellipse cx="{cx}" cy="{y + ih + 16}" rx="70" ry="9" fill="#020617" opacity="0.65" filter="url(#soft)"><animate attributeName="rx" values="70;54;70" dur="4s" repeatCount="indefinite"/></ellipse>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -12;0 0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+<g>{swy}<image x="{x:.1f}" y="{y:.1f}" width="{iw}" height="{ih}" href="data:image/png;base64,{data}" xlink:href="data:image/png;base64,{data}"/></g></g>
+{sp}</g>'''
+
+
+def text_section(title, icon_name, blocks, img_path, img_side, sway):
+    w = 900
+    tcx, ccx = (590, 165) if img_side == "left" else (310, 735)
+    items, total_h = layout_blocks(blocks)
+    inner_h = max(total_h + 70, 340)
+    start = (inner_h - total_h) / 2
+    body = f'<clipPath id="ic"><rect x="3" y="0" width="{w - 6}" height="{inner_h}"/></clipPath>'
+    body += char_group(img_path, ccx, inner_h / 2, 250, sway)
+    for i, (st, line, y) in enumerate(items):
+        body += render_line(st, line, tcx, start + y + st["size"], 0.4 + i * 0.12)
+    return section_svg(w, inner_h, title, icon_name, body, char_defs())
+
+
+def about_svg(cfg):
+    blocks = [("p", t) for t in cfg["about"]]
+    return text_section("About Me", "user", blocks, ROOT / "assets" / "about-me.png", "left", False)
+
+
+def goals_svg(cfg):
+    blocks = [("p", t) for t in cfg["goals"]]
+    if cfg.get("quote"):
+        blocks.append(("quote", cfg["quote"]))
+    if cfg.get("tagline"):
+        blocks.append(("tag", cfg["tagline"]))
+    return text_section("Hobbies & Goals", "target", blocks, ROOT / "assets" / "goals.png", "right", True)
 
 
 # --------------------------------------------------------------------------- data sources
@@ -753,14 +898,11 @@ def main():
     files = {
         "banner.svg": banner_svg(cfg, d["login"]),
         "footer.svg": footer_svg(),
-        "h-tech.svg": heading_svg("Technologies", "code"),
-        "h-stats.svg": heading_svg("Statistics", "chart"),
-        "h-scan.svg": heading_svg("Profile Scan", "scan"),
-        "h-about.svg": heading_svg("About Me", "user"),
-        "h-goals.svg": heading_svg("Hobbies & Goals", "target"),
         "tech.svg": tech_svg(items),
         "stats.svg": stats_svg(d),
         "scan.svg": scan_svg(d),
+        "about.svg": about_svg(cfg),
+        "goals.svg": goals_svg(cfg),
     }
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8")
