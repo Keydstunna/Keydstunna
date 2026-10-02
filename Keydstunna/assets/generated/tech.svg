@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 166" width="900" height="166" role="img">
+<defs>
+<linearGradient id="gBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1633"/><stop offset="1" stop-color="#050a17"/></linearGradient>
+<linearGradient id="gBd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="0.55" stop-color="#38bdf8"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
+<linearGradient id="gTx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#93c5fd"/><stop offset="1" stop-color="#67e8f9"/></linearGradient>
+<filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1e3a8a" stroke-opacity="0.18" stroke-width="1"/></pattern></defs>
+
+<g opacity="0" transform="translate(92.8 44)">
+<animateTransform attributeName="transform" type="translate" from="92.8 44" to="92.8 30" begin="0.00s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.00s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="3.2s" begin="0.80s" repeatCount="indefinite"/>
+<rect width="94.4" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">PH</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="26.4" lengthAdjust="spacing">PHP</text>
+<rect width="94.4" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="4s" begin="1.50s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(199.2 44)">
+<animateTransform attributeName="transform" type="translate" from="199.2 44" to="199.2 30" begin="0.09s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.09s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="3.7s" begin="0.89s" repeatCount="indefinite"/>
+<rect width="156.0" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">JA</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="88.0" lengthAdjust="spacing">JAVASCRIPT</text>
+<rect width="156.0" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="5s" begin="1.59s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(367.2 44)">
+<animateTransform attributeName="transform" type="translate" from="367.2 44" to="367.2 30" begin="0.18s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.18s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="4.2s" begin="0.98s" repeatCount="indefinite"/>
+<rect width="94.4" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">CS</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="26.4" lengthAdjust="spacing">CSS</text>
+<rect width="94.4" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="6s" begin="1.68s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(473.6 44)">
+<animateTransform attributeName="transform" type="translate" from="473.6 44" to="473.6 30" begin="0.27s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.27s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="4.7s" begin="1.07s" repeatCount="indefinite"/>
+<rect width="103.2" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">HT</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="35.2" lengthAdjust="spacing">HTML</text>
+<rect width="103.2" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="4s" begin="1.77s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(588.8 44)">
+<animateTransform attributeName="transform" type="translate" from="588.8 44" to="588.8 30" begin="0.36s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.36s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="3.2s" begin="1.16s" repeatCount="indefinite"/>
+<rect width="112.0" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">MY</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="44.0" lengthAdjust="spacing">MYSQL</text>
+<rect width="112.0" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="5s" begin="1.86s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(712.8 44)">
+<animateTransform attributeName="transform" type="translate" from="712.8 44" to="712.8 30" begin="0.45s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.45s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="3.7s" begin="1.25s" repeatCount="indefinite"/>
+<rect width="94.4" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">GI</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="26.4" lengthAdjust="spacing">GIT</text>
+<rect width="94.4" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="6s" begin="1.95s" repeatCount="indefinite"/></rect>
+</g></g>
+<g opacity="0" transform="translate(389.6 104)">
+<animateTransform attributeName="transform" type="translate" from="389.6 104" to="389.6 90" begin="0.54s" dur="0.6s" fill="freeze"/>
+<animate attributeName="opacity" from="0" to="1" begin="0.54s" dur="0.6s" fill="freeze"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="4.2s" begin="1.34s" repeatCount="indefinite"/>
+<rect width="120.8" height="46" rx="12" fill="#0d1a3f" stroke="#2a4fa8" stroke-width="1.5"/>
+<rect x="8" y="8" width="30" height="30" rx="8" fill="#e8f1ff"/>
+<text x="23" y="29" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="15" font-weight="800" fill="#1d4ed8">GI</text>
+<text x="48" y="29" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="13.5" font-weight="700" fill="#e0f2fe" textLength="52.8" lengthAdjust="spacing">GITHUB</text>
+<rect width="120.8" height="46" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="4s" begin="2.04s" repeatCount="indefinite"/></rect>
+</g></g>
+</svg>
