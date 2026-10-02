@@ -1,16 +1,24 @@
-## Hi there 👋
+<div align="center">
 
-<!--
-**Keydstunna/Keydstunna** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<img src="assets/header.svg" alt="Keydstunna" width="100%" />
 
-Here are some ideas to get you started:
+<img src="assets/card.svg" alt="Profile card" width="100%" />
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<img src="assets/scan.svg" alt="Profile scan" width="100%" />
+
+<img src="assets/activity.svg" alt="Activity grid" width="100%" />
+
+</div>
+
+### 🛠️ Tech Stack
+
+<div align="center">
+<img src="https://skillicons.dev/icons?i=php,js,html,css,git,github,mysql&theme=dark" alt="skills" />
+</div>
+
+### 📊 Live GitHub Stats
+
+<div align="center">
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=Keydstunna&show_icons=true&theme=tokyonight&hide_border=true" alt="stats" />
+<img src="https://streak-stats.demolab.com?user=Keydstunna&theme=tokyonight&hide_border=true" alt="streak" />
+</div>
