@@ -49,12 +49,11 @@ def load_config():
         "hide_tech": [],
         "max_tech": 12,
         "about": [
-            "Hello! I'm **Keydstunna**, a third-year **BS Information Technology** student. I enjoy learning new technologies, building web projects, and solving problems through code.",
-            "Right now I'm sharpening my skills in **PHP, JavaScript, HTML, and CSS**, and working toward becoming a well-rounded developer.",
+            "Hi! I'm Kier Lawrence Ignacio, a third-year BSIT student who enjoys working with technology and design. I like creating websites, designing graphics, and learning new things. I'm always looking for ways to improve my skills and turn my ideas into something useful.",
         ],
-        "goals": ["Third-year BSIT student, always building and learning."],
+        "goals": ["**Hobbies:** Web design, graphic design, gaming, listening to music, and watching movies and series."],
         "quote": "you can never be too happy in this life",
-        "tagline": "Building | Learning | Shipping",
+        "tagline": "Building | Learning",
     }
     p = ROOT / "config.json"
     if p.exists():
@@ -124,7 +123,7 @@ HEADER_H = 72
 
 
 def section_svg(w, inner_h, title, icon_name, inner, extra="", style=""):
-    tw = len(title) * 16.5
+    tw = len(title) * 18.6
     total = 44 + 14 + tw
     x0 = w / 2 - total / 2
     cx, cy = x0 + 22, 36
@@ -136,7 +135,7 @@ def section_svg(w, inner_h, title, icon_name, inner, extra="", style=""):
 <circle cx="{cx:.1f}" cy="{cy}" r="19" fill="#0b1a3d" stroke="url(#gBd)" stroke-width="2"/>
 <circle cx="{cx:.1f}" cy="{cy}" r="19" fill="none" stroke="{C['a2']}" stroke-width="1.5"><animate attributeName="r" values="19;31" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite"/></circle>
 {icon(icon_name, cx - 11, cy - 11, 22, C['a2'])}
-<text x="{x0 + 58:.1f}" y="{cy + 10}" font-family="{FONT_SANS}" font-size="28" font-weight="800" font-style="italic" fill="{C['hi']}" textLength="{tw:.1f}" lengthAdjust="spacingAndGlyphs">{esc(title)}</text>
+<text x="{x0 + 58:.1f}" y="{cy + 9}" font-family="{FONT_MONO}" font-size="25" font-weight="700" fill="url(#gTx)" letter-spacing="3" textLength="{tw:.1f}" lengthAdjust="spacing" filter="url(#glow)">{esc(title.upper())}</text>
 <rect x="40" y="{HEADER_H - 10}" width="{w - 80}" height="2" rx="1" fill="url(#lineG)"/>
 <rect x="-180" y="{HEADER_H - 11}" width="180" height="4" rx="2" fill="url(#shineG)"><animate attributeName="x" from="-180" to="{w}" dur="4.6s" repeatCount="indefinite"/></rect>
 </g>'''
