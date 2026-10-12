@@ -60,7 +60,7 @@ def load_config():
         "username": os.environ.get("GH_USER", "Keydstunna"),
         "role": "BSIT Student | Web Developer",
         "headline": "Third-year BSIT Student",
-        "banner_title": "クォンのGitHubへようこそ",
+        "banner_title": "クォンのギットハブへようこそ",
         "extra_tech": ["MySQL", "Git", "GitHub"],
         "hide_tech": [],
         "max_tech": 12,
@@ -172,7 +172,7 @@ def banner_svg(cfg, login):
     h = 300
     rnd = random.Random(21)
     text = cfg["banner_title"]
-    fs = 38
+    fs = 46
     tw = sum(fs * (1.04 if ord(c) > 0x2E80 else 0.62) for c in text)
     tx = W / 2 - tw / 2
 
@@ -215,7 +215,8 @@ def banner_svg(cfg, login):
 <filter id="b3" x="-20%" y="-120%" width="140%" height="340%"><feGaussianBlur stdDeviation="3"/></filter>
 <filter id="b1" x="-20%" y="-120%" width="140%" height="340%"><feGaussianBlur stdDeviation="0.8"/></filter>
 <clipPath id="round"><rect x="1.5" y="1.5" width="{W - 3}" height="{h - 3}" rx="10"/></clipPath>
-<clipPath id="reveal"><rect x="{tx - 6:.1f}" y="106" width="0" height="80"><animate attributeName="width" from="0" to="{tw + 12:.1f}" dur="2.4s" begin="0.4s" fill="freeze"/></rect></clipPath>'''
+<linearGradient id="gTxt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.55" stop-color="#f2f2f2"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>
+<clipPath id="reveal"><rect x="{tx - 14:.1f}" y="90" width="0" height="80"><animate attributeName="width" from="0" to="{tw + 28:.1f}" dur="2.4s" begin="0.4s" fill="freeze"/></rect></clipPath>'''
     body = f'''<rect width="{W}" height="{h}" fill="#000"/>
 <g clip-path="url(#round)">
 <rect width="{W}" height="{h}" fill="url(#vig)"/>
@@ -223,8 +224,18 @@ def banner_svg(cfg, login):
 {ribs}{thin}
 {flare}
 <rect x="0" y="0" width="{W}" height="{h}" fill="#000" opacity="0.18"/>
-<text x="{tx:.1f}" y="{h / 2 + 14:.1f}" font-family="{FONT_JP}" font-size="{fs}" font-weight="700" fill="#fff" textLength="{tw:.1f}" lengthAdjust="spacing" clip-path="url(#reveal)" filter="url(#glow)">{esc(text)}</text>
-<rect y="{h / 2 - 26:.1f}" width="3" height="52" fill="#fff" x="{tx:.1f}"><animate attributeName="x" from="{tx:.1f}" to="{tx + tw + 4:.1f}" dur="2.4s" begin="0.4s" fill="freeze"/><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/></rect>
+<text x="{W / 2}" y="{h / 2 + 62:.1f}" text-anchor="middle" font-family="{FONT_JP}" font-size="190" font-weight="900" fill="none" stroke="#fff" stroke-opacity="0.07" stroke-width="1.5">歓迎</text>
+<g clip-path="url(#reveal)">
+<text x="{tx - 3:.1f}" y="{h / 2 + 12:.1f}" font-family="{FONT_JP}" font-size="{fs}" font-weight="900" fill="#fff" opacity="0.28" textLength="{tw:.1f}" lengthAdjust="spacing">{esc(text)}<animate attributeName="x" values="{tx - 3:.1f};{tx - 7:.1f};{tx - 3:.1f};{tx + 1:.1f};{tx - 3:.1f}" dur="3.6s" repeatCount="indefinite"/></text>
+<text x="{tx + 3:.1f}" y="{h / 2 + 16:.1f}" font-family="{FONT_JP}" font-size="{fs}" font-weight="900" fill="#9a9a9a" opacity="0.4" textLength="{tw:.1f}" lengthAdjust="spacing">{esc(text)}<animate attributeName="x" values="{tx + 3:.1f};{tx + 7:.1f};{tx + 3:.1f};{tx - 1:.1f};{tx + 3:.1f}" dur="3.1s" repeatCount="indefinite"/></text>
+<text x="{tx:.1f}" y="{h / 2 + 14:.1f}" font-family="{FONT_JP}" font-size="{fs}" font-weight="900" fill="url(#gTxt)" stroke="#fff" stroke-width="0.6" textLength="{tw:.1f}" lengthAdjust="spacing" filter="url(#glow)">{esc(text)}</text>
+</g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="2.6s" dur="0.8s" fill="freeze"/>
+<rect x="{tx:.1f}" y="{h / 2 + 34:.1f}" width="{tw:.1f}" height="1.4" fill="url(#gHi)"/>
+<rect x="{tx:.1f}" y="{h / 2 + 33:.1f}" width="60" height="3" fill="#fff"><animate attributeName="x" values="{tx:.1f};{tx + tw - 60:.1f};{tx:.1f}" dur="4s" repeatCount="indefinite"/></rect>
+<text x="{W / 2}" y="{h / 2 + 62:.1f}" text-anchor="middle" font-family="{FONT_JP}" font-size="15" letter-spacing="9" fill="{C['mute']}">構築　◆　学習</text>
+<text x="{tx:.1f}" y="{h / 2 - 40:.1f}" font-family="{FONT_MONO}" font-size="11" letter-spacing="6" fill="{C['mute']}">&gt;&gt; 歓迎 // ようこそ</text></g>
+<rect y="{h / 2 - 28:.1f}" width="3" height="56" fill="#fff" x="{tx:.1f}"><animate attributeName="x" from="{tx:.1f}" to="{tx + tw + 4:.1f}" dur="2.4s" begin="0.4s" fill="freeze"/><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" begin="3s" dur="0.3s" fill="freeze" additive="replace"/></rect>
 </g>
 <rect x="1.5" y="1.5" width="{W - 3}" height="{h - 3}" rx="10" fill="none" stroke="{C['line2']}" stroke-width="1.5"/>
 <rect x="1.5" y="1.5" width="{W - 3}" height="{h - 3}" rx="10" fill="none" stroke="#fff" stroke-opacity="0.85" stroke-width="1.8" pathLength="1" stroke-dasharray="0.07 0.93"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="8s" repeatCount="indefinite"/></rect>'''
@@ -274,54 +285,92 @@ def pill_rows(items, max_w, gap=10):
     return rows
 
 
+def gray_png_b64(path, maxdim):
+    try:
+        from PIL import Image, ImageEnhance
+        im = Image.open(path).convert("RGBA")
+        im = im.crop(im.getbbox())
+        im.thumbnail((maxdim, maxdim), Image.LANCZOS)
+        a = im.getchannel("A")
+        g = ImageEnhance.Contrast(im.convert("L")).enhance(1.15)
+        out = Image.merge("LA", (g, a)).convert("RGBA")
+        buf = io.BytesIO()
+        out.save(buf, "PNG", optimize=True)
+        return base64.b64encode(buf.getvalue()).decode(), out.size
+    except Exception as e:  # noqa
+        print("character image skipped:", e, file=sys.stderr)
+        return None, (0, 0)
+
+
+def character_group(path, cx, cy, maxdim, sway=False, fade=False):
+    data, (iw, ih) = gray_png_b64(path, maxdim)
+    if not data:
+        return ""
+    x, y = cx - iw / 2, cy - ih / 2
+    swy = ""
+    if sway:
+        swy = (f'<animateTransform attributeName="transform" type="rotate" values="-3 {cx} {y + ih};3 {cx} {y + ih};-3 {cx} {y + ih}" '
+               f'dur="5s" repeatCount="indefinite"/>')
+    sp = "".join(sparkle(cx + dx, cy + dy, sz, du, be) for dx, dy, sz, du, be in
+                 [(-105, -95, 8, 2.6, 0), (110, -105, 10, 3.1, 0.8), (100, 88, 7, 2.4, 1.5), (-100, 82, 6, 2.9, 0.4), (0, -128, 7, 3.4, 2)])
+    return f'''<g clip-path="url(#cell)">
+<ellipse cx="{cx}" cy="{cy}" rx="150" ry="150" fill="url(#halo)"><animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/></ellipse>
+<circle cx="{cx}" cy="{cy}" r="128" fill="none" stroke="#fff" stroke-opacity="0.3" stroke-width="1.2" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="34s" repeatCount="indefinite"/></circle>
+<circle cx="{cx}" cy="{cy}" r="104" fill="none" stroke="#fff" stroke-opacity="0.16" stroke-width="1"><animate attributeName="r" values="104;112;104" dur="5s" repeatCount="indefinite"/></circle>
+<ellipse cx="{cx}" cy="{y + ih + 16}" rx="64" ry="8" fill="#fff" opacity="0.1" filter="url(#soft)"><animate attributeName="rx" values="64;48;64" dur="4s" repeatCount="indefinite"/></ellipse>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -11;0 0" dur="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+<g>{swy}<image x="{x:.1f}" y="{y:.1f}" width="{iw}" height="{ih}"{' mask="url(#fadeM)"' if fade else ''} href="data:image/png;base64,{data}" xlink:href="data:image/png;base64,{data}"/></g></g>
+{sp}</g>'''
+
+
+SPLIT_DEFS = ('<linearGradient id="fadeG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.78" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+              '<mask id="fadeM" maskContentUnits="objectBoundingBox" x="0" y="0" width="1" height="1"><rect x="0" y="0" width="1" height="1" fill="url(#fadeG)"/></mask>'
+              '<radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#fff" stop-opacity="0.16"/>'
+              '<stop offset="0.6" stop-color="#fff" stop-opacity="0.05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>')
+
+
+def split_frame(inner_h, left, img_path, sway, fade=False):
+    """Bordered box: text/rows on the left, floating image on the right (like the inspo tables)."""
+    bx, bw, by = 30, 840, 6
+    bh = inner_h - 12
+    div = 600
+    cx, cy = (div + bx + bw) / 2, by + bh / 2
+    extra = f'<clipPath id="cell"><rect x="{div + 1}" y="{by + 1}" width="{bx + bw - div - 2}" height="{bh - 2}"/></clipPath>' + SPLIT_DEFS
+    body = (f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="8" fill="#030303" stroke="{C["line"]}" stroke-width="1.3"/>'
+            f'<line x1="{div}" y1="{by}" x2="{div}" y2="{by + bh}" stroke="{C["line"]}" stroke-width="1.3"/>'
+            f'<rect x="{bx}" y="{by + 14}" width="3" height="{bh - 28}" fill="#fff"><animate attributeName="opacity" values="1;0.35;1" dur="3s" repeatCount="indefinite"/></rect>'
+            f'{left}{character_group(img_path, cx, cy - 6, 196, sway, fade)}')
+    return body, extra
+
+
 def goals_svg(cfg):
-    vx, vmax = 204, 620
-    lh, gap, prow = 25, 18, 42
-    rows = [("Class", "text", [cfg["headline"]]), ("Status", "text", [cfg["status"]]),
-            ("Hobbies", "pills", pill_rows(list(cfg["hobbies"]), vmax))]
+    rows = [("Class", [cfg["headline"]]), ("Status", [cfg["status"]]), ("Hobbies", list(cfg["hobbies"]))]
     if cfg.get("quote"):
-        rows.append(("Motto", "text", textwrap.wrap('"' + cfg["quote"] + '"', 66)))
-
-    def height(kind, vals):
-        return len(vals) * lh if kind == "text" else lh + (len(vals) - 1) * prow + 6
-
-    total_h = sum(height(k, v) for _n, k, v in rows) + gap * (len(rows) - 1)
-    inner_h = int(total_h + 82)
-    y = (inner_h - total_h) / 2 + 14
-    body = panel_box(inner_h)
-    body += f'<rect x="54" y="{y - 24:.1f}" width="792" height="{total_h + 34:.1f}" rx="6" fill="#0a0a0a" stroke="{C["line"]}"/>'
-    n, cur_x, cur_y = 0, 0, 0
-    for key, kind, vals in rows:
+        rows.append(("Motto", textwrap.wrap('"' + cfg["quote"] + '"', 36)))
+    lh, gap = 25, 16
+    total_h = sum(len(v) * lh for _k, v in rows) + gap * (len(rows) - 1)
+    inner_h = int(max(total_h + 70, 290))
+    y = (inner_h - total_h) / 2 + 12
+    band_top = y - 22
+    left = (f'<rect x="54" y="{band_top:.1f}" width="520" height="{total_h + 30:.1f}" rx="6" fill="#0a0a0a" stroke="{C["line"]}"/>')
+    n = 0
+    for key, vals in rows:
         b = 0.3 + n * 0.28
-        body += (f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
+        left += (f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
                  f'<animateTransform attributeName="transform" type="translate" from="-12 0" to="0 0" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
-                 f'{icon("diamond", 70, y - 12, 14, "#fff", 2, "#fff")}'
-                 f'<text x="94" y="{y:.1f}" font-family="{FONT_MONO}" font-size="14" font-weight="700" fill="{C["mute"]}">{esc(key)}</text>'
+                 f'{icon("diamond", 66, y - 12, 14, "#fff", 2, "#fff")}'
+                 f'<text x="90" y="{y:.1f}" font-family="{FONT_MONO}" font-size="14" font-weight="700" fill="{C["mute"]}">{esc(key)}</text>'
                  f'<path d="M168 {y - 5:.1f} h16 m-5 -4 l5 4 l-5 4" fill="none" stroke="{C["dim"]}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>')
-        if kind == "text":
-            for j, v in enumerate(vals):
-                body += f'<text x="{vx}" y="{y + j * lh:.1f}" font-family="{FONT_MONO}" font-size="14.5" fill="#f2f2f2">{esc(v)}</text>'
-            cur_x = vx + len(vals[-1]) * 8.7 + 6
-            cur_y = y + (len(vals) - 1) * lh
-        else:
-            k = 0
-            for r, row in enumerate(vals):
-                px = vx
-                for t, pw in row:
-                    py = y - 20 + r * prow
-                    d = b + 0.15 * k
-                    body += (f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{d:.2f}s" dur="0.4s" fill="freeze"/>'
-                             f'<rect x="{px:.1f}" y="{py:.1f}" width="{pw:.1f}" height="30" rx="15" fill="#101010" stroke="{C["line2"]}" stroke-width="1.3"/>'
-                             f'<rect x="{px:.1f}" y="{py:.1f}" width="{pw:.1f}" height="30" rx="15" fill="none" stroke="#fff" stroke-width="1.3" opacity="0">'
-                             f'<animate attributeName="opacity" values="0;0.85;0" dur="{4 + k % 3}s" begin="{d + 1.5:.2f}s" repeatCount="indefinite"/></rect>'
-                             f'<text x="{px + pw / 2:.1f}" y="{py + 20:.1f}" text-anchor="middle" font-family="{FONT_MONO}" font-size="13.5" fill="#f2f2f2">{esc(t)}</text></g>')
-                    px += pw + 10
-                    k += 1
-        body += '</g>'
-        y += height(kind, vals) + gap
+        for j, v in enumerate(vals):
+            left += (f'<text x="204" y="{y + j * lh:.1f}" font-family="{FONT_MONO}" font-size="14.5" fill="#f2f2f2">{esc(v)}</text>')
+        left += '</g>'
+        y += len(vals) * lh + gap
         n += 1
-    body += (f'<rect x="{cur_x:.1f}" y="{cur_y - 12:.1f}" width="8" height="15" fill="#fff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
-    return section_svg("Hobbies & Goals", "target", inner_h, body)
+    last_line = rows[-1][1][-1]
+    cur_y = y - gap - lh
+    left += (f'<rect x="{204 + len(last_line) * 8.7 + 6:.1f}" y="{cur_y - 12:.1f}" width="8" height="15" fill="#fff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
+    body, extra = split_frame(inner_h, left, ROOT / "assets" / "goals.png", True)
+    return section_svg("Hobbies & Goals", "target", inner_h, body, extra)
 
 
 # --------------------------------------------------------------------------- tech
