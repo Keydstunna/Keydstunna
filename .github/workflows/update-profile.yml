@@ -9,9 +9,7 @@ on:
     paths:
       - "scripts/**"
       - "config.json"
-      - "assets/video.*"
-      - "assets/about-me.png"
-      - "assets/goals.png"
+      - "assets/video*"
       - ".github/workflows/update-profile.yml"
 
 permissions:
