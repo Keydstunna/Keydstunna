@@ -3,6 +3,7 @@
 <radialGradient id="vig" cx="0.5" cy="0.35" r="0.9"><stop offset="0" stop-color="#121212"/><stop offset="1" stop-color="#000"/></radialGradient>
 <linearGradient id="gHi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <linearGradient id="gVhi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="gDk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="0.5" stop-color="#000" stop-opacity="0.55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
 <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
 <linearGradient id="gRib" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.25" stop-color="#fff" stop-opacity="0.85"/><stop offset="0.7" stop-color="#e8e8e8" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0.1"/></linearGradient>
@@ -13,7 +14,7 @@
 <filter id="b3" x="-20%" y="-120%" width="140%" height="340%"><feGaussianBlur stdDeviation="3"/></filter>
 <filter id="b1" x="-20%" y="-120%" width="140%" height="340%"><feGaussianBlur stdDeviation="0.8"/></filter>
 <clipPath id="round"><rect x="1.5" y="1.5" width="897" height="297" rx="10"/></clipPath>
-<clipPath id="reveal"><rect x="192.0" y="168" width="0" height="48"><animate attributeName="width" from="0" to="516.0" dur="2.4s" begin="0.4s" fill="freeze"/></rect></clipPath></defs>
+<clipPath id="reveal"><rect x="195.5" y="106" width="0" height="80"><animate attributeName="width" from="0" to="509.0" dur="2.4s" begin="0.4s" fill="freeze"/></rect></clipPath></defs>
 <rect width="900" height="300" fill="#000"/>
 <g clip-path="url(#round)">
 <rect width="900" height="300" fill="url(#vig)"/>
@@ -27,9 +28,8 @@
 <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/></g>
 <circle r="3.6" fill="#fff" filter="url(#glow)"/></g>
 <rect x="0" y="0" width="900" height="300" fill="#000" opacity="0.18"/>
-<text x="192.0" y="200" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="28" fill="#fff" textLength="516.0" lengthAdjust="spacing" clip-path="url(#reveal)" filter="url(#glow)">Welcome to Keydstunna&#x27;s GitHub</text>
-<rect y="172" width="3" height="34" fill="#fff" x="192.0"><animate attributeName="x" from="192.0" to="708.0" dur="2.4s" begin="0.4s" fill="freeze"/><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/></rect>
-<text x="450.0" y="240" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="14" fill="#bdbdbd" letter-spacing="2" opacity="0">@Keydstunna  |  BSIT Student | Web Developer<animate attributeName="opacity" from="0" to="0.95" begin="2.8s" dur="1s" fill="freeze"/></text>
+<text x="201.5" y="164.0" font-family="'Yu Gothic UI','Yu Gothic','Meiryo','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans CJK JP','Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#fff" textLength="497.0" lengthAdjust="spacing" clip-path="url(#reveal)" filter="url(#glow)">クォンのGitHubへようこそ</text>
+<rect y="124.0" width="3" height="52" fill="#fff" x="201.5"><animate attributeName="x" from="201.5" to="702.5" dur="2.4s" begin="0.4s" fill="freeze"/><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/></rect>
 </g>
 <rect x="1.5" y="1.5" width="897" height="297" rx="10" fill="none" stroke="#474747" stroke-width="1.5"/>
 <rect x="1.5" y="1.5" width="897" height="297" rx="10" fill="none" stroke="#fff" stroke-opacity="0.85" stroke-width="1.8" pathLength="1" stroke-dasharray="0.07 0.93"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="8s" repeatCount="indefinite"/></rect>
