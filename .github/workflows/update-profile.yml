@@ -10,6 +10,7 @@ on:
       - "scripts/**"
       - "config.json"
       - "assets/video*"
+      - "assets/goals.png"
       - ".github/workflows/update-profile.yml"
 
 permissions:
